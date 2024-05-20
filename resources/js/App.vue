@@ -2,7 +2,7 @@
     <router-link to="/">Home</router-link>
     <router-link to="/test">Test</router-link>
 
-    <h1>
+    <h1 class="text-xl text-yellow-400">
         VueSchool Rocks! 🤘 
     </h1>
     <router-view></router-view>

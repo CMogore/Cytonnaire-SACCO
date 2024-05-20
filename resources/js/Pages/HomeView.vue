@@ -1,9 +1,12 @@
+<!-- resources/js/Pages/HomeRoute.vue -->
 <template>
-    <div>
-        <h1>HOME</h1>
-        <router-link to="/test">Take me to Test page</router-link>
-        <button @click.prevent="triggerEndpoint">Trigger Endpoint</button>
-        <p v-if="response">{{ response }}</p>
+    <div class="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-md space-y-4">
+        <h1 class="text-2xl font-bold">HOME</h1>
+        <router-link to="/test" class="text-blue-500">Take me to Test page</router-link>
+        <button @click.prevent="triggerEndpoint" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Trigger Endpoint
+        </button>
+        <p v-if="response" class="text-gray-700">{{ response }}</p>
     </div>
 </template>
 
