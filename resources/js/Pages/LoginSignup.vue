@@ -93,7 +93,8 @@
                 const response = await axios.post('/api/login', this.loginForm);
                 console.log('Logged in:', response.data);
                 localStorage.setItem('auth_token', response.data.token);
-                this.$router.push('/');
+                localStorage.setItem('role_id', response.data.user.role_id);
+                this.$router.push('/member');
             } catch (error) {
                 console.error('Login failed:', error.response.data.error);
             }
