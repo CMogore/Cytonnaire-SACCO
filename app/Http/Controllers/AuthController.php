@@ -36,5 +36,19 @@ class AuthController extends Controller
 
         return response()->json(['user' => $user, 'token' => $user->createToken('MyApp')->plainTextToken]);
     }
+
+    public function logout(Request $request)
+    {
+        $user = $request->user();
+
+        if (!$user) {
+            return response()->json(['message' => 'User not authenticated'], 401);
+        }
+
+        // Revoke the token
+        $user->currentAccessToken()->delete();
+
+        return response()->json(['message' => 'Logged out successfully']);
+    }
 }
 
