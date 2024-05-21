@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+        Schema::create('shares', function (Blueprint $table) {
+            $table->id(); // Primary key with auto-increment
+            $table->foreignId('user_id')->constrained('users'); // Foreign key to users table
+            $table->decimal('total_shares', 10, 2);
             $table->timestamps();
+            $table->softDeletes(); // Soft deletion
         });
     }
 
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('shares');
     }
 };
