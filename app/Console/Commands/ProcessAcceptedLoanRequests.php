@@ -26,6 +26,7 @@ class ProcessAcceptedLoanRequests extends Command
             DB::table('loans')->insert([
                 'user_id' => $request->user_id,
                 'amount' => $request->amount,
+                'payable_amount' => $request->payable_amount,
                 'type_id' => $request->type_id,
                 'status_id' => 5,
                 'created_at' => now(),

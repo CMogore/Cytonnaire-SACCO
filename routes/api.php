@@ -33,8 +33,18 @@ Route::post('/register', [AuthController::class, 'register']);
 
 Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);
 
+// Route::middleware(['auth:sanctum', 'admin'])->group(function () {
+//     Route::get('/admin');
+//     Route::get('/home', [AdminController::class, 'home']);
+//     // Add more routes here...
+// });
+// Route::middleware(['auth:sanctum', 'admin'])->get('/admin');
+// Route::middleware(['auth:sanctum', 'admin'])->get('/home');
+Route::middleware(['auth:sanctum', 'admin'])->group(function () {
+    Route::get('/admin/home', [AdminController::class, 'home']);
+});
+// Route::get('/admin/home', [AdminController::class, 'home']);
 
-Route::middleware(['auth:sanctum', 'admin'])->get('/admin', [AdminController::class, 'index']);
 
 Route::middleware('auth:sanctum', 'member')->get('/member', [UserController::class, 'dashboard']);
 

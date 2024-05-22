@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users'); // Foreign key to users table
             $table->decimal('amount', 10, 2);
             $table->date('contribution_date');
-            $table->foreignId('status_id')->default(1)->constrained('statuses'); // Foreign key to statuses table
+            $table->foreignId('status_id')->default(9)->constrained('statuses'); // Foreign key to statuses table
             $table->timestamps();
             $table->softDeletes(); // Soft deletion
         });

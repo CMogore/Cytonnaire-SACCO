@@ -27,6 +27,9 @@ return new class extends Migration
             ['name' => 'not settled', 'created_at' => now(), 'updated_at' => now()],
             ['name' => 'current employee', 'created_at' => now(), 'updated_at' => now()],
             ['name' => 'former employee', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'paid', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'unpaid', 'created_at' => now(), 'updated_at' => now()],
+
 
 
         ]);

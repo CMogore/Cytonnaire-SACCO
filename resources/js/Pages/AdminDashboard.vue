@@ -6,6 +6,11 @@
       <!-- Main content area -->
       <div class="flex-1 p-6 bg-gray-100">
         <!-- Display different sections based on selected menu item -->
+        <div v-if="selectedMenuItem === 'home'">
+          <h2 class="text-3xl font-semibold mb-4">DASHBOARD</h2>
+          <Home></Home>
+          <!-- <UsersTable /> -->
+        </div>
         <div v-if="selectedMenuItem === 'users'">
           <h2 class="text-2xl font-semibold mb-4">Users Table</h2>
           <!-- <UsersTable /> -->
@@ -39,6 +44,8 @@
   
   <script>
   import SidePanel from '@/components/SidePanel.vue';
+  import Home from '@/components/admin/HomeView.vue';
+
 //   import UsersTable from '@/components/admin/UsersTable.vue';
 //   import MoviesTable from '@/components/admin/MoviesTable.vue';
 //   import GenresTable from '@/components/admin/GenresTable.vue';
@@ -73,6 +80,7 @@
   },
     components: {
       SidePanel,
+      Home,
     //   UsersTable,
     //   GenresTable,
     //   MoviesTable,
@@ -83,7 +91,7 @@
     },
     data() {
       return {
-        selectedMenuItem: 'users' // Default selected menu item
+        selectedMenuItem: 'home' // Default selected menu item
       };
     },
     methods: {

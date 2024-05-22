@@ -24,7 +24,7 @@ class UpdateLoanAmountAfterPayment extends Command
 
             if ($loan) {
                 // Update the loan amount by decrementing the payment amount
-                DB::table('loans')->where('id', $payment->loan_id)->decrement('amount', $payment->amount);
+                DB::table('loans')->where('id', $payment->loan_id)->decrement('payable_amount', $payment->amount);
 
                 // Mark the payment as processed (soft delete)
                 DB::table('loan_payments')->where('id', $payment->id)->update([

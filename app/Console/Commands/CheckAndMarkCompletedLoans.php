@@ -21,7 +21,7 @@ class CheckAndMarkCompletedLoans extends Command
 
         // Fetch loans with an amount of zero
         $loans = DB::table('loans')
-            ->where('amount', 0)
+            ->where('payable_amount', 0)
             ->where('status_id', '!=', $completedStatusId)
             ->whereNull('deleted_at')
             ->get();

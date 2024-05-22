@@ -27,7 +27,7 @@ class AddPendingContributions extends Command
                     'user_id' => $user->id,
                     'amount' => 300, 
                     'contribution_date' => $nextMonth,
-                    'status' => 1,
+                    'status' => 9,
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);
