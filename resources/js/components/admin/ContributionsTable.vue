@@ -38,13 +38,10 @@
   </template>
   
   <script>
-  import UserModal from '@/components/admin/CreateUsers.vue';
   import axios from 'axios';
   
   export default {
-    components: {
-      UserModal
-    },
+    
     data() {
       return {
         contributions: [],
