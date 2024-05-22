@@ -22,9 +22,9 @@
           <h2 class="text-2xl font-semibold mb-4">Loan Requests Table</h2>
           <LoanRequests />
         </div>
-        <div v-else-if="selectedMenuItem === 'genres'">
-          <h2 class="text-2xl font-semibold mb-4">Genres Table</h2>
-          <!-- <GenresTable /> -->
+        <div v-else-if="selectedMenuItem === 'statuses'">
+          <h2 class="text-2xl font-semibold mb-4">Statuses Table</h2>
+          <StatusesTable />
         </div>
         <div v-else-if="selectedMenuItem === 'movieactors'">
           <h2 class="text-2xl font-semibold mb-4">MovieActors Table</h2>
@@ -46,6 +46,8 @@
   import Home from '@/components/admin/HomeView.vue';
 
   import UsersTable from '@/components/admin/UsersTable.vue';
+  import StatusesTable from '@/components/admin/StatusesTable.vue';
+
   import ContributionsTable from '@/components/admin/ContributionsTable.vue';
   import LoanRequests from '@/components/admin/LoanRequestsTable.vue';
 
@@ -87,6 +89,7 @@
       UsersTable,
       ContributionsTable,
       LoanRequests,
+      StatusesTable,
     //   GenresTable,
     //   MoviesTable,
     //   ActorsTable,

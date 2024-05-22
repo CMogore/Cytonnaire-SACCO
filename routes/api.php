@@ -52,6 +52,11 @@ Route::middleware(['auth:sanctum', 'admin'])->group(function () {
     Route::post('/admin/loanrequests/{id}/accept', [AdminController::class, 'acceptLoanRequest']);
     Route::post('/admin/loanrequests/{id}/reject', [AdminController::class, 'rejectLoanRequest']);
 
+    Route::get('/admin/statuses', [AdminController::class, 'getStatuses']);
+    Route::post('/admin/createstatus', [AdminController::class, 'createStatus']);
+    Route::put('/admin/status/{id}', [AdminController::class, 'updateStatus']);
+    Route::delete('/admin/deletestatus/{id}', [AdminController::class, 'deleteStatus']);
+
 
 });
 // Route::get('/admin/home', [AdminController::class, 'home']);
