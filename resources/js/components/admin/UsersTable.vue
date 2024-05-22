@@ -5,10 +5,12 @@
         <thead>
           <tr>
             <th class="px-4 py-2">ID</th>
-            <th class="px-4 py-2">Name</th>
+            <th class="px-4 py-2">First Name</th>
+            <th class="px-4 py-2">Last Name</th>
             <th class="px-4 py-2">Email</th>
-            <th class="px-4 py-2">Username</th>
-            <th class="px-4 py-2">Role</th>
+            <th class="px-4 py-2">Number</th>
+            <th class="px-4 py-2">Role ID</th>
+            <th class="px-4 py-2">Employee Status ID</th>
             <th class="px-4 py-2">Actions</th>
           </tr>
         </thead>
@@ -16,11 +18,13 @@
           <!-- Display users data -->
           <tr v-for="user in users" :key="user.id">
             <td class="border px-4 py-2">{{ user.id }}</td>
-            <td class="border px-4 py-2">{{ user.name }}</td>
+            <td class="border px-4 py-2">{{ user.firstname }}</td>
+            <td class="border px-4 py-2">{{ user.lastname }}</td>
             <td class="border px-4 py-2">{{ user.email }}</td>
-            <td class="border px-4 py-2">{{ user.username }}</td>
-            <td class="border px-4 py-2">{{ user.role }}</td>
-            <td class="border border-gray-300 px-4 py-2">
+            <td class="border px-4 py-2">{{ user.number }}</td>
+            <td class="border px-4 py-2">{{ user.role_id }}</td>
+            <td class="border px-4 py-2">{{ user.employee_status_id }}</td>
+            <td class="border px-4 py-2">
               <button @click="editUser(user)" class="text-blue-500 hover:text-blue-700 focus:outline-none mr-2">Edit</button>
               <button @click="deleteUser(user.id)" class="text-red-500 hover:text-red-700 focus:outline-none">Delete</button>
             </td>
@@ -34,12 +38,13 @@
       </div>
   
       <!-- User creation/edit modal -->
-      <UserModal ref="userModal" @closeModal="closeCreateUserModal" :userData="selectedUser" />
+      <UserModal ref="userModal" @saveUser="fetchUsers" :userData="selectedUser" />
     </div>
   </template>
   
   <script>
   import UserModal from '@/components/admin/CreateUsers.vue';
+  import axios from 'axios';
   
   export default {
     components: {
@@ -47,37 +52,45 @@
     },
     data() {
       return {
-        users: [
-          { id: 1, name: 'John Doe', email: 'john@example.com', username: 'john', role: 'Admin' },
-          { id: 2, name: 'Jane Smith', email: 'jane@example.com', username: 'jane', role: 'User' },
-          // Add more user data
-        ],
+        users: [],
         selectedUser: null
       };
     },
+    created() {
+      this.fetchUsers();
+    },
     methods: {
+      fetchUsers() {
+        const authToken = localStorage.getItem('auth_token');
+        axios.get('/api/admin/users', {
+          headers: { 'Authorization': `Bearer ${authToken}` }
+        })
+        .then(response => {
+          this.users = response.data;
+        })
+        .catch(error => {
+          console.error('Error fetching users:', error);
+        });
+      },
       editUser(user) {
         this.selectedUser = { ...user }; // Clone user object for editing
         this.$refs.userModal.openModal();
       },
       deleteUser(userId) {
-        const index = this.users.findIndex(user => user.id === userId);
-        if (index !== -1) {
-          this.users.splice(index, 1);
-          console.log('Delete User ID:', userId);
-        }
-        
+        const authToken = localStorage.getItem('auth_token');
+        axios.delete(`/api/admin/users/${userId}`, {
+          headers: { 'Authorization': `Bearer ${authToken}` }
+        })
+        .then(response => {
+          this.fetchUsers();
+        })
+        .catch(error => {
+          console.error('Error deleting user:', error);
+        });
       },
       openCreateUserModal() {
-        if (this.$refs.userModal) {
-          this.selectedUser = null; // Reset selected user for add operation
-          this.$refs.userModal.openModal();
-        }
-      },
-      closeCreateUserModal() {
-        if (this.$refs.userModal) {
-          this.$refs.userModal.closeModal();
-        }
+        this.selectedUser = null; // Reset selected user for add operation
+        this.$refs.userModal.openModal();
       }
     }
   };
@@ -86,3 +99,4 @@
   <style scoped>
   /* Add scoped styles if needed */
   </style>
+  
