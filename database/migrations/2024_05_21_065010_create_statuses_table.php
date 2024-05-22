@@ -25,6 +25,9 @@ return new class extends Migration
             ['name' => 'approved', 'created_at' => now(), 'updated_at' => now()],
             ['name' => 'rejected', 'created_at' => now(), 'updated_at' => now()],
             ['name' => 'not settled', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'current employee', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'former employee', 'created_at' => now(), 'updated_at' => now()],
+
 
         ]);
     }

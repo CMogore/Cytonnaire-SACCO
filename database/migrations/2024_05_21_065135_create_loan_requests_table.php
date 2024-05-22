@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id(); // Primary key with auto-increment
             $table->foreignId('user_id')->constrained('users'); // Foreign key to users table
             $table->decimal('amount', 10, 2);
+            $table->decimal('payable_amount', 10, 2);
             $table->foreignId('type_id')->constrained('loan_types'); // Foreign key to loan_types table
             $table->foreignId('status_id')->default(1)->constrained('statuses'); // Foreign key to statuses table
             $table->text('comment')->nullable();

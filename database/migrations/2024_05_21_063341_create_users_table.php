@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('password');
             $table->string('number');
             $table->foreignId('role_id')->default(1)->constrained('roles');
+            $table->foreignId('employee_status_id')->default(6)->constrained('statuses');
+
             $table->timestamps();
             $table->softDeletes();
         });
