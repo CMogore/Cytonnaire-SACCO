@@ -108,7 +108,36 @@ class AdminController extends Controller
     //loanrequest
     public function getLoanRequests()
     {
-        $contributions = LoanRequest::all();
-        return response()->json($contributions);
+        $adminUserId = auth()->id();
+
+        // Get all loan requests except those made by the current admin user
+        $loanrequests = LoanRequest::where('user_id', '!=', $adminUserId)
+                                    ->where('status_id', 1)
+                                    ->get();
+
+        return response()->json($loanrequests);
+        ;
     }
+
+    // 
+
+    public function acceptLoanRequest($id)
+    {
+        $loanRequest = LoanRequest::findOrFail($id);
+        $loanRequest->status_id = 3; // Set status to accepted
+        $loanRequest->save();
+    
+        return response()->json(['message' => 'Loan request accepted successfully']);
+    }
+    
+    public function rejectLoanRequest(Request $request, $id)
+    {
+        $loanRequest = LoanRequest::findOrFail($id);
+        $loanRequest->status_id = 4; // Set status to rejected
+        $loanRequest->comment = $request->comment; // Save rejection comment
+        $loanRequest->save();
+    
+        return response()->json(['message' => 'Loan request rejected successfully']);
+    }
+
 }

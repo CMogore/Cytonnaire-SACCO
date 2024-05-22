@@ -48,6 +48,10 @@ Route::middleware(['auth:sanctum', 'admin'])->group(function () {
     Route::delete('/admin/users/{id}', [AdminController::class, 'deleteUser']);
 
     Route::get('/admin/contributions', [AdminController::class, 'getContributions']);
+    Route::get('/admin/loanrequests', [AdminController::class, 'getLoanRequests']);
+    Route::post('/admin/loanrequests/{id}/accept', [AdminController::class, 'acceptLoanRequest']);
+    Route::post('/admin/loanrequests/{id}/reject', [AdminController::class, 'rejectLoanRequest']);
+
 
 });
 // Route::get('/admin/home', [AdminController::class, 'home']);
