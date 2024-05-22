@@ -14,12 +14,12 @@
           <h2 class="text-2xl font-semibold mb-4">Users Table</h2>
           <UsersTable />
         </div>
-        <div v-else-if="selectedMenuItem === 'movies'">
-          <h2 class="text-2xl font-semibold mb-4">Movies Table</h2>
-          <!-- <MoviesTable /> -->
+        <div v-else-if="selectedMenuItem === 'contributions'">
+          <h2 class="text-2xl font-semibold mb-4">Contributions Table</h2>
+          <ContributionsTable />
         </div>
-        <div v-else-if="selectedMenuItem === 'actors'">
-          <h2 class="text-2xl font-semibold mb-4">Actors Table</h2>
+        <div v-else-if="selectedMenuItem === 'loanrequests'">
+          <h2 class="text-2xl font-semibold mb-4">Loan Requests Table</h2>
           <!-- <ActorsTable /> -->
         </div>
         <div v-else-if="selectedMenuItem === 'genres'">
@@ -46,6 +46,8 @@
   import Home from '@/components/admin/HomeView.vue';
 
   import UsersTable from '@/components/admin/UsersTable.vue';
+  import ContributionsTable from '@/components/admin/ContributionsTable.vue';
+
 //   import MoviesTable from '@/components/admin/MoviesTable.vue';
 //   import GenresTable from '@/components/admin/GenresTable.vue';
 //   import ActorsTable from '@/components/admin/ActorsTable.vue';
@@ -81,6 +83,7 @@
       SidePanel,
       Home,
       UsersTable,
+      ContributionsTable,
     //   GenresTable,
     //   MoviesTable,
     //   ActorsTable,

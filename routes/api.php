@@ -46,6 +46,9 @@ Route::middleware(['auth:sanctum', 'admin'])->group(function () {
     Route::post('/admin/create', [AdminController::class, 'createUser']);
     Route::put('/admin/users/{id}', [AdminController::class, 'updateUser']);
     Route::delete('/admin/users/{id}', [AdminController::class, 'deleteUser']);
+
+    Route::get('/admin/contributions', [AdminController::class, 'getContributions']);
+
 });
 // Route::get('/admin/home', [AdminController::class, 'home']);
 

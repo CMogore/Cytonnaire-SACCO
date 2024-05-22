@@ -97,4 +97,18 @@ class AdminController extends Controller
         $user->delete();
         return response()->json(null, 204);
     }
+
+    //contributions
+    public function getContributions()
+    {
+        $contributions = Contribution::all();
+        return response()->json($contributions);
+    }
+
+    //loanrequest
+    public function getLoanRequests()
+    {
+        $contributions = LoanRequest::all();
+        return response()->json($contributions);
+    }
 }
