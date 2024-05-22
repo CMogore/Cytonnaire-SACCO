@@ -57,6 +57,16 @@ Route::middleware(['auth:sanctum', 'admin'])->group(function () {
     Route::put('/admin/status/{id}', [AdminController::class, 'updateStatus']);
     Route::delete('/admin/deletestatus/{id}', [AdminController::class, 'deleteStatus']);
 
+    Route::get('/admin/roles', [AdminController::class, 'getRoles']);
+    Route::post('/admin/createrole', [AdminController::class, 'createRole']);
+    Route::put('/admin/role/{id}', [AdminController::class, 'updateRole']);
+    Route::delete('/admin/deleterole/{id}', [AdminController::class, 'deleteRole']);
+
+    Route::get('/admin/loantypes', [AdminController::class, 'getLoanTypes']);
+    Route::post('/admin/createloantype', [AdminController::class, 'createLoanType']);
+    Route::put('/admin/loantype/{id}', [AdminController::class, 'updateLoantype']);
+    Route::delete('/admin/deleteloantype/{id}', [AdminController::class, 'deleteLoanType']);
+
 
 });
 // Route::get('/admin/home', [AdminController::class, 'home']);

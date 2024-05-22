@@ -26,12 +26,28 @@
           <h2 class="text-2xl font-semibold mb-4">Statuses Table</h2>
           <StatusesTable />
         </div>
-        <div v-else-if="selectedMenuItem === 'movieactors'">
-          <h2 class="text-2xl font-semibold mb-4">MovieActors Table</h2>
-          <!-- <MovieActors /> -->
+        <div v-else-if="selectedMenuItem === 'roles'">
+          <h2 class="text-2xl font-semibold mb-4">Roles Table</h2>
+          <Roles />
         </div>
-        <div v-else-if="selectedMenuItem === 'moviegenres'">
-          <h2 class="text-2xl font-semibold mb-4">MovieGenres Table</h2>
+        <div v-else-if="selectedMenuItem === 'loantypes'">
+          <h2 class="text-2xl font-semibold mb-4">Loan Types Table</h2>
+          <LoanTypes />
+        </div>
+        <div v-else-if="selectedMenuItem === 'loanpayments'">
+          <h2 class="text-2xl font-semibold mb-4">Loan Payment Table</h2>
+          <!-- <MovieGenres /> -->
+        </div>
+        <div v-else-if="selectedMenuItem === 'loans'">
+          <h2 class="text-2xl font-semibold mb-4">Loans Table</h2>
+          <!-- <MovieGenres /> -->
+        </div>
+        <div v-else-if="selectedMenuItem === 'shares'">
+          <h2 class="text-2xl font-semibold mb-4">Shares Table</h2>
+          <!-- <MovieGenres /> -->
+        </div>
+        <div v-else-if="selectedMenuItem === 'sharetransfers'">
+          <h2 class="text-2xl font-semibold mb-4">Share Transfer Table</h2>
           <!-- <MovieGenres /> -->
         </div>
         <!-- Add more sections for other menu items -->
@@ -50,6 +66,9 @@
 
   import ContributionsTable from '@/components/admin/ContributionsTable.vue';
   import LoanRequests from '@/components/admin/LoanRequestsTable.vue';
+  import Roles from '@/components/admin/RolesTable.vue';
+  import LoanTypes from '@/components/admin/LoanTypesTable.vue';
+
 
 
 //   import MoviesTable from '@/components/admin/MoviesTable.vue';
@@ -90,6 +109,8 @@
       ContributionsTable,
       LoanRequests,
       StatusesTable,
+      LoanTypes,
+      Roles
     //   GenresTable,
     //   MoviesTable,
     //   ActorsTable,

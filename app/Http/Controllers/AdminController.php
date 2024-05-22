@@ -184,9 +184,94 @@ class AdminController extends Controller
         return response()->json(null, 204);
     }
 
-
     //loan types table
+    public function getLoanTypes()
+    {
+        $statuses = LoanType::all();
+        return response()->json($statuses);
+    }
+
+    public function createLoanType(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'interest_rate' => 'required|numeric|regex:/^\d+(\.\d{1,2})?$/|min:0|max:255'
+
+        ]);
+
+        $status = LoanType::create([
+            'name' => $validatedData['name'],
+            'interest_rate' => $validatedData['interest_rate'],
+
+        ]);
+
+        return response()->json($status, 201);
+    }
+
+    public function updateLoanType(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'interest_rate' => 'required|numeric|regex:/^\d+(\.\d{1,2})?$/|min:0|max:255'
+
+
+        ]);
+
+        $status = LoanType::findOrFail($id);
+        $status->name = $validatedData['name'];
+        $status->interest_rate = $validatedData['interest_rate'];
+
+        $status->save();
+
+        return response()->json($status);
+    }
+
+    public function deleteLoanType($id)
+    {
+        $status = LoanType::findOrFail($id);
+        $status->delete();
+        return response()->json(null, 204);
+    }
+
 
     //roles table
+    public function getRoles()
+    {
+        $statuses = Role::all();
+        return response()->json($statuses);
+    }
+
+    public function createRole(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        $status = Role::create([
+            'name' => $validatedData['name'],
+        ]);
+
+        return response()->json($status, 201);
+    }
+
+    public function updateRole(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        $status = Role::findOrFail($id);
+        $status->name = $validatedData['name'];
+        $status->save();
+
+        return response()->json($status);
+    }
+
+    public function deleteRole($id)
+    {
+        $status = Role::findOrFail($id);
+        $status->delete();
+        return response()->json(null, 204);
+    }
 
 }
