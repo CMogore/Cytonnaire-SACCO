@@ -31,4 +31,70 @@ class AdminController extends Controller
 
         ]);
     }
+
+    //users table
+    public function getUsers()
+    {
+        $users = User::all();
+        return response()->json($users);
+    }
+
+    public function createUser(Request $request)
+    {
+        $validatedData = $request->validate([
+            'firstname' => 'required|string|max:255',
+            'lastname' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'number' => 'required|string|max:15',
+            'password' => 'required|string|min:8',
+            'role_id' => 'required|integer',
+            'employee_status_id' => 'required|integer',
+        ]);
+
+        $user = User::create([
+            'firstname' => $validatedData['firstname'],
+            'lastname' => $validatedData['lastname'],
+            'email' => $validatedData['email'],
+            'number' => $validatedData['number'],
+            'password' => bcrypt($validatedData['password']),
+            'role_id' => $validatedData['role_id'],
+            'employee_status_id' => $validatedData['employee_status_id'],
+        ]);
+
+        return response()->json($user, 201);
+    }
+
+    public function updateUser(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'firstname' => 'required|string|max:255',
+            'lastname' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email,'.$id,
+            'number' => 'required|string|max:15',
+            'password' => 'nullable|string|min:8',
+            'role_id' => 'required|integer',
+            'employee_status_id' => 'required|integer',
+        ]);
+
+        $user = User::findOrFail($id);
+        $user->firstname = $validatedData['firstname'];
+        $user->lastname = $validatedData['lastname'];
+        $user->email = $validatedData['email'];
+        $user->number = $validatedData['number'];
+        if (!empty($validatedData['password'])) {
+            $user->password = bcrypt($validatedData['password']);
+        }
+        $user->role_id = $validatedData['role_id'];
+        $user->employee_status_id = $validatedData['employee_status_id'];
+        $user->save();
+
+        return response()->json($user);
+    }
+
+    public function deleteUser($id)
+    {
+        $user = User::findOrFail($id);
+        $user->delete();
+        return response()->json(null, 204);
+    }
 }

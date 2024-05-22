@@ -1,7 +1,7 @@
 <template>
     <div class="bg-emerald-900 text-white h-full p-6">
       <h1 @click="selectMenuItem('home')" class="text-2xl font-semibold mb-4">Admin Panel</h1>
-      <ul>
+      <ul class="text-center">
         <li @click="selectMenuItem('users')" :class="{ 'bg-gray-900': selectedMenuItem === 'users' }" class="py-2 px-4 mb-2 rounded cursor-pointer">Users</li>
         <li @click="selectMenuItem('movies')" :class="{ 'bg-gray-900': selectedMenuItem === 'movies' }" class="py-2 px-4 mb-2 rounded cursor-pointer">Movies</li>
         <li @click="selectMenuItem('actors')" :class="{ 'bg-gray-900': selectedMenuItem === 'actors' }" class="py-2 px-4 mb-2 rounded cursor-pointer">Actors</li>

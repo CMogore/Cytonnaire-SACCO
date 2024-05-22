@@ -9,11 +9,10 @@
         <div v-if="selectedMenuItem === 'home'">
           <h2 class="text-3xl font-semibold mb-4">DASHBOARD</h2>
           <Home></Home>
-          <!-- <UsersTable /> -->
         </div>
         <div v-if="selectedMenuItem === 'users'">
           <h2 class="text-2xl font-semibold mb-4">Users Table</h2>
-          <!-- <UsersTable /> -->
+          <UsersTable />
         </div>
         <div v-else-if="selectedMenuItem === 'movies'">
           <h2 class="text-2xl font-semibold mb-4">Movies Table</h2>
@@ -46,7 +45,7 @@
   import SidePanel from '@/components/SidePanel.vue';
   import Home from '@/components/admin/HomeView.vue';
 
-//   import UsersTable from '@/components/admin/UsersTable.vue';
+  import UsersTable from '@/components/admin/UsersTable.vue';
 //   import MoviesTable from '@/components/admin/MoviesTable.vue';
 //   import GenresTable from '@/components/admin/GenresTable.vue';
 //   import ActorsTable from '@/components/admin/ActorsTable.vue';
@@ -81,7 +80,7 @@
     components: {
       SidePanel,
       Home,
-    //   UsersTable,
+      UsersTable,
     //   GenresTable,
     //   MoviesTable,
     //   ActorsTable,
