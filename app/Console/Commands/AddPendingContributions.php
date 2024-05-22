@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Console\Commands;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 use Illuminate\Console\Command;
 
@@ -25,9 +27,9 @@ class AddPendingContributions extends Command
             foreach ($users as $user) {
                 DB::table('contributions')->insert([
                     'user_id' => $user->id,
-                    'amount' => 300, 
+                    'amount' => 500, 
                     'contribution_date' => $nextMonth,
-                    'status' => 9,
+                    'status_id' => 9,
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);
