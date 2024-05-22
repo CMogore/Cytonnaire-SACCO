@@ -9,6 +9,10 @@ use App\Models\Share;
 use App\Models\LoanRequest;
 use App\Models\Loan;
 use App\Models\Contribution;
+use App\Models\Status;
+use App\Models\LoanType;
+use App\Models\Role;
+
 
 
 
@@ -139,5 +143,50 @@ class AdminController extends Controller
     
         return response()->json(['message' => 'Loan request rejected successfully']);
     }
+
+    //statuses table
+    public function getStatuses()
+    {
+        $statuses = Status::all();
+        return response()->json($statuses);
+    }
+
+    public function createStatus(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        $status = Status::create([
+            'name' => $validatedData['name'],
+        ]);
+
+        return response()->json($status, 201);
+    }
+
+    public function updateStatus(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        $status = Status::findOrFail($id);
+        $status->name = $validatedData['name'];
+        $status->save();
+
+        return response()->json($status);
+    }
+
+    public function deleteStatus($id)
+    {
+        $status = Status::findOrFail($id);
+        $status->delete();
+        return response()->json(null, 204);
+    }
+
+
+    //loan types table
+
+    //roles table
 
 }
