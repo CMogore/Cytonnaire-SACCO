@@ -67,6 +67,8 @@ Route::middleware(['auth:sanctum', 'admin'])->group(function () {
     Route::put('/admin/loantype/{id}', [AdminController::class, 'updateLoantype']);
     Route::delete('/admin/deleteloantype/{id}', [AdminController::class, 'deleteLoanType']);
 
+    Route::get('/admin/loans', [AdminController::class, 'getLoans']);
+
 
 });
 // Route::get('/admin/home', [AdminController::class, 'home']);

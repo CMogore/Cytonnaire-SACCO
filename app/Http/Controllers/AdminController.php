@@ -105,7 +105,8 @@ class AdminController extends Controller
     //contributions
     public function getContributions()
     {
-        $contributions = Contribution::all();
+        $contributions = Contribution::where('status_id', 9)
+        ->get();;
         return response()->json($contributions);
     }
 
@@ -272,6 +273,17 @@ class AdminController extends Controller
         $status = Role::findOrFail($id);
         $status->delete();
         return response()->json(null, 204);
+    }
+
+    //loans
+    public function getLoans()
+    {
+
+        $loans = Loan::where('status_id', 5)
+                                    ->get();
+
+        return response()->json($loans);
+        ;
     }
 
 }

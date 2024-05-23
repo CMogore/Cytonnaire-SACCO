@@ -40,7 +40,7 @@
         </div>
         <div v-else-if="selectedMenuItem === 'loans'">
           <h2 class="text-2xl font-semibold mb-4">Loans Table</h2>
-          <!-- <MovieGenres /> -->
+          <Loans />
         </div>
         <div v-else-if="selectedMenuItem === 'shares'">
           <h2 class="text-2xl font-semibold mb-4">Shares Table</h2>
@@ -68,6 +68,8 @@
   import LoanRequests from '@/components/admin/LoanRequestsTable.vue';
   import Roles from '@/components/admin/RolesTable.vue';
   import LoanTypes from '@/components/admin/LoanTypesTable.vue';
+  import Loans from '@/components/admin/LoansTable.vue';
+
 
 
 
@@ -110,7 +112,8 @@
       LoanRequests,
       StatusesTable,
       LoanTypes,
-      Roles
+      Roles,
+      Loans
     //   GenresTable,
     //   MoviesTable,
     //   ActorsTable,
