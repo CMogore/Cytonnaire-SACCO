@@ -3,17 +3,20 @@
     <nav class="flex justify-between items-center w-[92%] mx-auto">
       <!-- Brand Logo -->
       <div class="font-bold text-2xl pr-12">CySacco</div>
-      
+      <div
+        class="nav-links duration-500 md:static md:-mt-12 pt-12  absolute md:min-h-fit min-h-[60vh] pr-20 left-0 top-[-100%] md:w-auto w-full flex items-center px-5"
+        :class="{ 'top-[6%] z-10': isMenuOpen }"
+      >
       <!-- Navigation Links Container -->
       <div class="flex items-center justify-between w-full">
         <!-- Left Navigation Links -->
-        <ul class="flex space-x-12">
+        <!-- <ul class="flex space-x-12">
           <li><router-link to="/" class="hover:text-gray-500">Home</router-link></li>
           <li><router-link to="/about" class="hover:text-gray-500">About</router-link></li>
-        </ul>
+        </ul> -->
 
         <!-- Right Authentication Links -->
-        <ul class="flex items-center space-x-4 ml-auto">
+        <ul class="flex items-center space-x-4 ml-auto ">
           <li v-if="isAuthenticated" class="flex items-center space-x-4">
             <span>{{ name }}</span>
             <button @click="logout" class="hover:text-gray-500">Logout</button>
@@ -25,10 +28,11 @@
           </li>
         </ul>
       </div>
+      </div>
 
       <!-- Mobile Menu Icon -->
       <div class="flex items-center md:hidden">
-        <ion-icon @click="toggleMenu" name="menu" class="text-3xl cursor-pointer text-white"></ion-icon>
+        <ion-icon @click="toggleMenu" name="menu" class="text-3xl cursor-pointer text-yellow"></ion-icon>
       </div>
     </nav>
   </header>

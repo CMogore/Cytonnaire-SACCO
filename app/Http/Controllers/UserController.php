@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use Carbon\Carbon;
 
 use App\Models\User;
 use App\Models\Share;
@@ -41,6 +41,21 @@ class UserController extends Controller
         }
 
         return response()->json($share, 201);
+    }
+
+    public function makeContribution(Request $request)
+    {
+        $validatedData = $request->validate([
+            'amount' => 'required|numeric|min:0',
+        ]);
+
+        $contribution = Contribution::create([
+            'user_id' => Auth::id(),
+            'amount' => $validatedData['amount'],
+            'contribution_date' => Carbon::now(),
+        ]);
+
+        return response()->json($contribution, 201);
     }
 
 }
