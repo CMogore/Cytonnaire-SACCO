@@ -96,4 +96,20 @@ class UserController extends Controller
         return response()->json($transfer, 201);
     }
 
+    public function getLatestContributions(Request $request)
+{
+    $user_id = Auth::id();
+    $firstDay = now()->startOfMonth()->toDateString();
+    $lastDay = now()->endOfMonth()->toDateString();
+
+    $contributions = Contribution::where('user_id', $user_id)
+        ->whereBetween('contribution_date', [$firstDay, $lastDay])
+        ->orderBy('contribution_date', 'desc')
+        ->take(5)
+        ->get();
+
+    return response()->json($contributions);
+}
+
+
 }
