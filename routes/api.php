@@ -92,6 +92,7 @@ Route::middleware(['auth:sanctum', 'member'])->group(function () {
     Route::post('/user/makecontributions', [UserController::class, 'makeContribution']);
     Route::post('/user/sharetransfers', [UserController::class, 'transferShares']);
     Route::get('/user/latestcontributions', [UserController::class, 'getLatestContributions']);
+    Route::get('/user/activeloans', [UserController::class, 'getActiveLoans']);
 
 
 

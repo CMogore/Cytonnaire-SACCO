@@ -110,6 +110,18 @@ class UserController extends Controller
 
     return response()->json($contributions);
 }
+public function getActiveLoans(Request $request)
+{
+    $user_id = Auth::id();
+
+    $loans = Loan::where('user_id', $user_id)
+        ->where('status_id', 5)
+        ->orderBy('created_at', 'desc')
+        ->get();
+
+    return response()->json($loans);
+}
+
 
 
 }

@@ -47,7 +47,7 @@
           <latest-contributions/>
         </div>
         <div v-else-if="selectedMenuItem === 'loans'">
-          <h2 class="text-2xl font-semibold mb-4">Loans Table</h2>
+          <active-loans></active-loans>
         </div>
         <div v-else-if="selectedMenuItem === 'statements'">
           <h2 class="text-2xl font-semibold mb-4">Statements</h2>
@@ -64,6 +64,7 @@ import BuySharesModal from './BuyShares.vue';
 import MakeContributionsModal from './MakeContribution.vue';
 import ShareTransferModal from './ShareTransfer.vue';
 import LatestContributions from './LatestContributions.vue';
+import ActiveLoans from './ActiveLoans.vue';
 
 export default {
   components: {
@@ -71,7 +72,8 @@ export default {
     BuySharesModal,
     MakeContributionsModal,
     ShareTransferModal,
-    LatestContributions
+    LatestContributions,
+    ActiveLoans
   },
   data() {
     return {
