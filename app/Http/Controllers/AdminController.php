@@ -286,4 +286,11 @@ class AdminController extends Controller
         ;
     }
 
+    //shares
+    public function getShares()
+    {
+        $shares = Share::all();
+        return response()->json($shares);
+    }
+
 }

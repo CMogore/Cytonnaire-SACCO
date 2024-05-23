@@ -69,6 +69,9 @@ Route::middleware(['auth:sanctum', 'admin'])->group(function () {
 
     Route::get('/admin/loans', [AdminController::class, 'getLoans']);
 
+    Route::get('/admin/shares', [AdminController::class, 'getShares']);
+
+
 
 });
 // Route::get('/admin/home', [AdminController::class, 'home']);

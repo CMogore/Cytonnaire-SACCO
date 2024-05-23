@@ -44,7 +44,7 @@
         </div>
         <div v-else-if="selectedMenuItem === 'shares'">
           <h2 class="text-2xl font-semibold mb-4">Shares Table</h2>
-          <!-- <MovieGenres /> -->
+          <Shares />
         </div>
         <div v-else-if="selectedMenuItem === 'sharetransfers'">
           <h2 class="text-2xl font-semibold mb-4">Share Transfer Table</h2>
@@ -69,6 +69,8 @@
   import Roles from '@/components/admin/RolesTable.vue';
   import LoanTypes from '@/components/admin/LoanTypesTable.vue';
   import Loans from '@/components/admin/LoansTable.vue';
+  import Shares from '@/components/admin/SharesTable.vue';
+
 
 
 
@@ -113,7 +115,8 @@
       StatusesTable,
       LoanTypes,
       Roles,
-      Loans
+      Loans,
+      Shares
     //   GenresTable,
     //   MoviesTable,
     //   ActorsTable,
