@@ -94,6 +94,8 @@
                 console.log('Logged in:', response.data);
                 localStorage.setItem('auth_token', response.data.token);
                 localStorage.setItem('role_id', response.data.user.role_id);
+                localStorage.setItem('firstname', response.data.user.firstname);
+
                 this.$router.push('/member');
             } catch (error) {
                 console.error('Login failed:', error.response.data.error);
