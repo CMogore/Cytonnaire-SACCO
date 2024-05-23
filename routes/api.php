@@ -94,6 +94,8 @@ Route::middleware(['auth:sanctum', 'member'])->group(function () {
     Route::get('/user/latestcontributions', [UserController::class, 'getLatestContributions']);
     Route::get('/user/activeloans', [UserController::class, 'getActiveLoans']);
     Route::get('/user/latestpayments', [UserController::class, 'getLatestPayments']);
+    Route::get('/user/made-contributions', [UserController::class, 'getMadeContributions']);
+    Route::get('/user/pending-contributions', [UserController::class, 'getPendingContributions']);
 
 
 

@@ -139,6 +139,37 @@ public function getLatestPayments(Request $request)
     return response()->json($payments);
 }
 
+public function getMadeContributions(Request $request)
+    {
+        $user_id = Auth::id();
+        $startOfMonth = Carbon::now()->startOfMonth();
+        $endOfMonth = Carbon::now()->endOfMonth();
+
+        $contributions = Contribution::where('user_id', $user_id)
+            ->whereBetween('contribution_date', [$startOfMonth, $endOfMonth])
+            ->orderBy('contribution_date', 'desc')
+            ->get();
+
+        return response()->json($contributions);
+    }
+
+    public function getPendingContributions(Request $request)
+    {
+        $user_id = Auth::id();
+        $startOfMonth = Carbon::now()->startOfMonth();
+        $endOfMonth = Carbon::now()->endOfMonth();
+        $minimumContribution = 500;
+
+        $totalContributions = Contribution::where('user_id', $user_id)
+            ->whereBetween('contribution_date', [$startOfMonth, $endOfMonth])
+            ->sum('amount');
+
+        $pendingContribution = $minimumContribution - $totalContributions;
+        $pendingContribution = $pendingContribution > 0 ? $pendingContribution : 0;
+
+        return response()->json(['pending_contribution' => $pendingContribution]);
+    }
+
 
 
 }

@@ -10,8 +10,7 @@
         <Home/>
       </div>
       <div v-else-if="selectedMenuItem === 'contributions'">
-        <h2 class="text-2xl font-semibold mb-4">Contributions</h2>
-        <!-- <UsersTable /> -->
+        <Contributions />
       </div>
       <div v-else-if="selectedMenuItem === 'loans'">
         <h2 class="text-2xl font-semibold mb-4">Loans Table</h2>
@@ -32,12 +31,14 @@
 <script>
 import UserSidePanel from '../components/UserSidePanel.vue';
 import Home from '@/components/user/HomeView.vue';
+import Contributions from '../components/user/Contributions.vue'
 
 
 export default {
   components: {
     UserSidePanel,
-    Home
+    Home,
+    Contributions
   },
   data() {
     return {
