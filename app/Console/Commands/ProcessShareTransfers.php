@@ -50,9 +50,8 @@ class ProcessShareTransfers extends Command
                 'updated_at' => now(),
             ]);
 
-            // Soft delete the sender
+            
             DB::table('users')->where('id', $transfer->from_user_id)->update([
-                'deleted_at' => now(),
                 'updated_at' => now(),
             ]);
         }
