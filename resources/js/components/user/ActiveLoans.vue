@@ -1,6 +1,6 @@
 <template>
     <div>
-      <h2 class="text-2xl font-semibold mb-4">Active Loans</h2>
+      <h2 class="text-2xl font-semibold mb-4 text-emerald-900">Active Loans</h2>
       <table class="min-w-full bg-white">
         <thead>
           <tr>

@@ -3,7 +3,7 @@
       <ul class="text-center">
         <li @click="selectMenuItem('contributions')" :class="{ 'bg-emerald-900 text-white': selectedMenuItem === 'contributions' }" class="py-2 px-4 mb-2 rounded cursor-pointer">Contributions</li>
         <li @click="selectMenuItem('loans')" :class="{ 'bg-emerald-900 text-white': selectedMenuItem === 'loans' }" class="py-2 px-4 mb-2 rounded cursor-pointer">Loans</li>
-        <li @click="selectMenuItem('statements')" :class="{ 'bg-emerald-900 text-white': selectedMenuItem === 'statements' }" class="py-2 px-4 mb-2 rounded cursor-pointer">Payments</li>
+        <li @click="selectMenuItem('latestpayments')" :class="{ 'bg-emerald-900 text-white': selectedMenuItem === 'latestpayments' }" class="py-2 px-4 mb-2 rounded cursor-pointer">Payments</li>
         
 
         <!-- Add more menu items as needed -->

@@ -122,6 +122,23 @@ public function getActiveLoans(Request $request)
     return response()->json($loans);
 }
 
+public function getLatestPayments(Request $request)
+{
+    $user_id = Auth::id();
+    $startOfMonth = Carbon::now()->startOfMonth();
+    $endOfMonth = Carbon::now()->endOfMonth();
+
+    $payments = LoanPayment::join('loans', 'loan_payments.loan_id', '=', 'loans.id')
+        ->where('loans.user_id', $user_id)
+        ->whereBetween('loan_payments.payment_date', [$startOfMonth, $endOfMonth])
+        ->orderBy('loan_payments.payment_date', 'desc')
+        ->select('loan_payments.*')  // Ensure that we select only the columns from payments table
+        ->take(5)
+        ->get();
+
+    return response()->json($payments);
+}
+
 
 
 }

@@ -1,31 +1,39 @@
 <template>
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-2 ml-16 px-12 ">
+    <div class="grid grid-cols-1 md:grid-cols-5 gap-2 ml-16 px-12 ">
       <div @click="openModal"> 
       <div  class="bg-orange-500 rounded-lg p-12  mb-2 h-10 w-10 flex items-center justify-center">
         <div class="text-center">
           <h2 class="text-2xl font-bold mb-2 text-white">BS</h2>
         </div>
       </div>
-      <h2 class="text-l font-semibold mb-2">Buy Shares</h2>
+      <h2 class="text-l font-semibold mb-2 ml-2">Buy Shares</h2>
     </div> 
     <div @click="openMCModal"> 
-      <div  class="bg-teal-500 rounded-lg p-12 ml-4 mb-2 h-10 w-10 flex items-center justify-center">
+      <div  class="bg-teal-500 rounded-lg p-12  mb-2 h-10 w-10 flex items-center justify-center">
         <div class="text-center">
           <h2 class="text-2xl font-bold mb-2 text-white">MC</h2>
         </div>
       </div>
-      <h2 class="text-l font-semibold mb-2">Make Contributions</h2>
+      <h2 class="text-l font-semibold mb-2 -ml-6">Make Contributions</h2>
+    </div> 
+    <div @click="openLRModal"> 
+      <div  class="bg-pink-500 rounded-lg p-12  mb-2 h-10 w-10 flex items-center justify-center">
+        <div class="text-center">
+          <h2 class="text-2xl font-bold mb-2 text-white">LR</h2>
+        </div>
+      </div>
+      <h2 class="text-l font-semibold mb-2 -ml-2">Loan Requests</h2>
     </div> 
     <div @click="openLPModal"> 
-      <div  class="bg-pink-500 rounded-lg p-12  mb-2 h-10 w-10 flex items-center justify-center">
+      <div  class="bg-fuchsia-500 rounded-lg p-12  mb-2 h-10 w-10 flex items-center justify-center">
         <div class="text-center">
           <h2 class="text-2xl font-bold mb-2 text-white">LP</h2>
         </div>
       </div>
-      <h2 class="text-l font-semibold mb-2">Loan Payments</h2>
+      <h2 class="text-l font-semibold mb-2 -ml-2">Loan Payments</h2>
     </div> 
     <div @click="openSTModal"> 
-      <div  class="bg-fuchsia-500 rounded-lg p-12 ml-2 mb-2 h-10 w-10 flex items-center justify-center">
+      <div  class="bg-green-500 rounded-lg p-12 ml-2 mb-2 h-10 w-10 flex items-center justify-center">
         <div class="text-center">
           <h2 class="text-2xl font-bold mb-2 text-white">ST</h2>
         </div>
@@ -49,8 +57,8 @@
         <div v-else-if="selectedMenuItem === 'loans'">
           <active-loans></active-loans>
         </div>
-        <div v-else-if="selectedMenuItem === 'statements'">
-          <h2 class="text-2xl font-semibold mb-4">Statements</h2>
+        <div v-else-if="selectedMenuItem === 'latestpayments'">
+            <latest-payments></latest-payments>
         </div>
         <!-- Add more sections for other menu items -->
       </div>
@@ -65,6 +73,7 @@ import MakeContributionsModal from './MakeContribution.vue';
 import ShareTransferModal from './ShareTransfer.vue';
 import LatestContributions from './LatestContributions.vue';
 import ActiveLoans from './ActiveLoans.vue';
+import LatestPayments from './LatestPayments.vue'
 
 export default {
   components: {
@@ -73,7 +82,8 @@ export default {
     MakeContributionsModal,
     ShareTransferModal,
     LatestContributions,
-    ActiveLoans
+    ActiveLoans,
+    LatestPayments
   },
   data() {
     return {
