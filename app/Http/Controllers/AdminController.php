@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\User;
 use App\Models\Share;
+use App\Models\ShareTransfer;
 use App\Models\LoanRequest;
 use App\Models\Loan;
 use App\Models\Contribution;
@@ -20,7 +21,7 @@ class AdminController extends Controller
 {
     public function home(Request $request)
     {
-        $totalShares = Share::count();
+        $totalShares = Share::sum('total_shares');
         $totalLoanRequests = LoanRequest::where('status_id', 1)->count();
         $pendingContributions = Contribution::where('status_id', 9)->count();
         $totalLoans = Loan::where('status_id', 5)->count();
@@ -291,6 +292,13 @@ class AdminController extends Controller
     {
         $shares = Share::all();
         return response()->json($shares);
+    }
+
+    //sharetransfers
+    public function getShareTransfers()
+    {
+        $sharetransfers = ShareTransfer::all();
+        return response()->json($sharetransfers);
     }
 
 }
