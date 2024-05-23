@@ -36,7 +36,7 @@
         </div>
         <div v-else-if="selectedMenuItem === 'loanpayments'">
           <h2 class="text-2xl font-semibold mb-4">Loan Payment Table</h2>
-          <!-- <MovieGenres /> -->
+          <LoanPayments />
         </div>
         <div v-else-if="selectedMenuItem === 'loans'">
           <h2 class="text-2xl font-semibold mb-4">Loans Table</h2>
@@ -71,7 +71,7 @@
   import Loans from '@/components/admin/LoansTable.vue';
   import Shares from '@/components/admin/SharesTable.vue';
   import ShareTransfers from '@/components/admin/ShareTransfersTable.vue';
-//   import GenresTable from '@/components/admin/GenresTable.vue';
+  import LoanPayments  from '@/components/admin/LoanPaymentsTable.vue';
 //   import ActorsTable from '@/components/admin/ActorsTable.vue';
 //   import MovieActors from '@/components/admin/MovieActorsTable.vue';
 //   import MovieGenres from '@/components/admin/MovieGenresTable.vue';
@@ -112,7 +112,8 @@
       Roles,
       Loans,
       Shares,
-      ShareTransfers
+      ShareTransfers,
+      LoanPayments 
     //   GenresTable,
     //   MoviesTable,
     //   ActorsTable,

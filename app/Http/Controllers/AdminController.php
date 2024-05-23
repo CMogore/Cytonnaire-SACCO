@@ -12,6 +12,7 @@ use App\Models\Loan;
 use App\Models\Contribution;
 use App\Models\Status;
 use App\Models\LoanType;
+use App\Models\LoanPayment;
 use App\Models\Role;
 
 
@@ -299,6 +300,13 @@ class AdminController extends Controller
     {
         $sharetransfers = ShareTransfer::all();
         return response()->json($sharetransfers);
+    }
+
+    //loanpayments
+    public function getLoanPayments()
+    {
+        $loanpayments = LoanPayment::all();
+        return response()->json($loanpayments);
     }
 
 }
