@@ -35,6 +35,7 @@
     </div>
     <BuySharesModal :isOpen="isModalOpen" :userId="userId" @close="closeModal" @shareBought="handleShareBought" />
     <MakeContributionsModal :isOpen="isMakeContributionsModalOpen" @close="isMakeContributionsModalOpen = false" @contributionMade="handleContributionMade" />
+    <ShareTransferModal :isOpen="isShareTransfersModalOpen" @close="isShareTransfersModalOpen = false" @sharesTransferred="handleSharesTransferred" />
 
     <div class="flex h-[24rem] mt-20 rounded shadow-emerald-900 shadow-2xl">
       <!-- Side panel -->
@@ -61,18 +62,21 @@
 import HomePanel from './HomePanel.vue';
 import BuySharesModal from './BuyShares.vue';
 import MakeContributionsModal from './MakeContribution.vue';
+import ShareTransferModal from './ShareTransfer.vue';
 
 export default {
   components: {
     HomePanel,
     BuySharesModal,
     MakeContributionsModal,
+    ShareTransferModal
   },
   data() {
     return {
       selectedMenuItem: 'home',
       isMakeContributionsModalOpen: false,
       isModalOpen: false,
+      isShareTransfersModalOpen: false,
       userId: null // Replace with actual user ID retrieval logic
     };
   },
@@ -92,13 +96,21 @@ export default {
     openMCModal() {
       this.isMakeContributionsModalOpen = true;
     },
+    openSTModal() {
+      this.isShareTransfersModalOpen = true;
+    },
     handleShareBought() {
       // Logic to refresh shares list or show a success message
-      console.log('Share bought successfully');
+      alert('Share bought successfully');
     },
     handleContributionMade() {
       // Handle post-contribution made logic here
-      console.log('Contribution made successfully');
+      alert('Contribution made successfully');
+
+    },
+    handleSharesTransferred() {
+      // Handle post-shares transferred logic here
+      alert('Shares Transferred made successfully');
 
     },
     getUserIdFromLocalStorage() {

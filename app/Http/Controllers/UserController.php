@@ -58,4 +58,42 @@ class UserController extends Controller
         return response()->json($contribution, 201);
     }
 
+    public function transferShares(Request $request)
+    {
+        $validatedData = $request->validate([
+            'to_user_id' => 'required|integer|exists:users,id',
+            'amount' => 'required|numeric|min:1',
+        ]);
+
+        $fromUserId = Auth::id();
+        $toUserId = $validatedData['to_user_id'];
+        $amount = $validatedData['amount'];
+
+        // Check if the from_user_id has enough shares
+        $share = Share::where('user_id', $fromUserId)->first();
+
+        if (!$share || $share->total_shares < $amount) {
+            return response()->json(['error' => 'Insufficient shares'], 400);
+        }
+
+        // Deduct shares from from_user_id
+        $share->total_shares -= $amount;
+        $share->save();
+
+        // Add shares to to_user_id or create a new record
+        $toShare = Share::firstOrNew(['user_id' => $toUserId]);
+        $toShare->total_shares += $amount;
+        $toShare->save();
+
+        // Record the transfer
+        $transfer = ShareTransfer::create([
+            'from_user_id' => $fromUserId,
+            'to_user_id' => $toUserId,
+            'amount' => $amount,
+            'date' => Carbon::now(),
+        ]);
+
+        return response()->json($transfer, 201);
+    }
+
 }
