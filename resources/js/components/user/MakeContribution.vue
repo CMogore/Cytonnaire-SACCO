@@ -28,7 +28,18 @@
         amount: ''
       };
     },
+    watch: {
+    
+    isOpen(newVal) {
+      if (!newVal) {
+        this.resetForm();
+      }
+    }
+  },
     methods: {
+        resetForm() {
+      this.amount = '';
+    },
       closeModal() {
         this.$emit('close');
       },

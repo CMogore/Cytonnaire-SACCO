@@ -29,13 +29,23 @@
         amount: ''
       };
     },
+    watch: {
+    
+    isOpen(newVal) {
+      if (!newVal) {
+        this.resetForm();
+      }
+    }
+  },
     methods: {
+        resetForm() {
+      this.amount = '';
+    },
       closeModal() {
         this.$emit('close');
       },
       buyShares() {
         const shareData = {
-          user_id: this.userId,
           total_shares: this.amount,
         };
   
