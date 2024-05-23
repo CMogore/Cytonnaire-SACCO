@@ -1,4 +1,8 @@
 <template>
+  <!-- Create User button -->
+  <div class="mt-4 text-right mb-2">
+        <button @click="openCreateStatusModal" class="px-4 py-2 bg-blue-500 text-white rounded-md">Create Status</button>
+      </div>
     <div>
       <!-- Table to display users -->
       <table class="table-auto w-full">
@@ -9,7 +13,7 @@
             <th class="px-4 py-2">Actions</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody class="text-center">
           <!-- Display users data -->
           <tr v-for="user in statuses" :key="user.id">
             <td class="border px-4 py-2">{{ user.id }}</td>
@@ -21,11 +25,6 @@
           </tr>
         </tbody>
       </table>
-  
-      <!-- Create User button -->
-      <div class="mt-4 text-left">
-        <button @click="openCreateStatusModal" class="px-4 py-2 bg-blue-500 text-white rounded-md">Create Status</button>
-      </div>
   
       <!-- User creation/edit modal -->
       <StatusModal ref="userModal" @saveUser="fetchStatus" :userData="selectedUser" />

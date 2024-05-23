@@ -2,7 +2,7 @@
   <header class="bg-emerald-900 p-4 text-lg text-white font-bold md:sticky md:top-0 md:z-50">
     <nav class="flex justify-between items-center w-[92%] mx-auto">
       <!-- Brand Logo -->
-      <div class="font-bold text-2xl pr-12">CYSACCO</div>
+      <div class="font-bold text-2xl pr-12">CySacco</div>
       
       <!-- Navigation Links Container -->
       <div class="flex items-center justify-between w-full">

@@ -1,4 +1,8 @@
 <template>
+  <!-- Create User button -->
+  <div class="mt-4 text-right mb-2">
+        <button @click="openCreateLoanTypeModal" class="px-4 py-2 bg-blue-500 text-white rounded-md">Create Loan Type</button>
+      </div>
     <div>
       <!-- Table to display users -->
       <table class="table-auto w-full">
@@ -10,7 +14,7 @@
             <th class="px-4 py-2">Actions</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody class="text-center">
           <!-- Display users data -->
           <tr v-for="user in loantypes" :key="user.id">
             <td class="border px-4 py-2">{{ user.id }}</td>
@@ -24,10 +28,7 @@
         </tbody>
       </table>
   
-      <!-- Create User button -->
-      <div class="mt-4 text-left">
-        <button @click="openCreateLoanTypeModal" class="px-4 py-2 bg-blue-500 text-white rounded-md">Create Loan Type</button>
-      </div>
+      
   
       <!-- User creation/edit modal -->
       <LoanTypesModal ref="userModal" @saveUser="fetchLoanType" :userData="selectedUser" />

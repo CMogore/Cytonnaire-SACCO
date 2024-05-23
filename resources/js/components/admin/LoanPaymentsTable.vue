@@ -11,7 +11,7 @@
 
           </tr>
         </thead>
-        <tbody>
+        <tbody class="text-center">
           <!-- Display users data -->
           <tr v-for="user in loanpayments" :key="user.id">
             <td class="border px-4 py-2">{{ user.id }}</td>

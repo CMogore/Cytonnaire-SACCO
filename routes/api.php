@@ -85,4 +85,11 @@ Route::middleware(['auth:sanctum', 'admin'])->group(function () {
 
 Route::middleware('auth:sanctum', 'member')->get('/member', [UserController::class, 'dashboard']);
 
+Route::middleware(['auth:sanctum', 'member'])->group(function () {
 
+    Route::get('/user/home', [UserController::class, 'home']);
+    Route::post('/user/buyshares', [UserController::class, 'buyShares']);
+
+
+
+});

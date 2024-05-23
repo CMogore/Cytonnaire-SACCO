@@ -1,67 +1,70 @@
 <template>
-  <NavBar></NavBar>
-  <div class="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-md space-y-4">
-      <h1 class="text-2xl font-bold">HOME</h1>
-      <router-link to="/test" class="text-blue-500">Take me to Test page</router-link>
-      
-      <button @click.prevent="logout" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-          Logout
-      </button>
-      
+  <div class="flex h-screen">
+    <!-- Side panel -->
+    <UserSidePanel @menuItemSelected="handleMenuItemSelected" />
+
+    <!-- Main content area -->
+    <div class="flex-1 p-6 bg-gray-100">
+      <!-- Display different sections based on selected menu item -->
+      <div v-if="selectedMenuItem === 'home'">
+        <Home/>
+      </div>
+      <div v-else-if="selectedMenuItem === 'contributions'">
+        <h2 class="text-2xl font-semibold mb-4">Contributions</h2>
+        <!-- <UsersTable /> -->
+      </div>
+      <div v-else-if="selectedMenuItem === 'loans'">
+        <h2 class="text-2xl font-semibold mb-4">Loans Table</h2>
+        <!-- <ContributionsTable /> -->
+      </div>
+      <div v-else-if="selectedMenuItem === 'statements'">
+        <h2 class="text-2xl font-semibold mb-4">Statements</h2>
+        <!-- <LoanRequests /> -->
+      </div>
+
+      <!-- Add more sections for other menu items -->
+
+      <!-- Place additional content for each menu item here -->
+    </div>
   </div>
 </template>
 
 <script>
-import NavBar from '../components/NavBar.vue';
-import axios from 'axios';
+import UserSidePanel from '../components/UserSidePanel.vue';
+import Home from '@/components/user/HomeView.vue';
+
 
 export default {
   components: {
-    NavBar
+    UserSidePanel,
+    Home
+  },
+  data() {
+    return {
+      selectedMenuItem: 'home' // Default selected menu item
+    };
+  },
+  computed: {
+    isAuthenticated() {
+      // Check if user is authenticated
+      return !!localStorage.getItem('auth_token');
+    }
   },
   created() {
     // Check if user is authenticated
     if (!this.isAuthenticated) {
-      // Redirect to login page or handle accordingly
-      console.log('ziiiiii')
+      console.log('User not authenticated, redirecting...');
       this.$router.push('/');
     }
   },
-  computed: {
-    isAuthenticated() {
-      // Check if user is authenticated by checking for a token
-      return localStorage.getItem('auth_token');
-    }
-  },
   methods: {
-      async logout() {
-            try {
-                const token = localStorage.getItem('auth_token');
-                const response = await axios.post('/api/logout', {}, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-                });
-                console.log('yess worked')
-                console.log('Logged out:', response.data);
-                localStorage.removeItem('auth_token');
-                localStorage.removeItem('role_id');
-                localStorage.removeItem('firstname');
-
-
-                this.$router.push('/login');
-
-            } catch (error) {
-                console.error('Logout failed:', error.response.data);
-            }
-        },
-        
+    handleMenuItemSelected(item) {
+      this.selectedMenuItem = item;
     }
-  
-
+  }
 }
 </script>
 
 <style>
-
+/* Add your styles here */
 </style>

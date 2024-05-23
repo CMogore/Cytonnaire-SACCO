@@ -1,5 +1,9 @@
 <template>
     <div>
+       <!-- Create User button -->
+       <div class="mt-4 text-right mb-4">
+        <button @click="openCreateUserModal" class="px-4 py-2 bg-blue-500 text-white rounded-md">Create User</button>
+      </div>
       <!-- Table to display users -->
       <table class="table-auto w-full">
         <thead>
@@ -14,7 +18,7 @@
             <th class="px-4 py-2">Actions</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody class="text-center">
           <!-- Display users data -->
           <tr v-for="user in users" :key="user.id">
             <td class="border px-4 py-2">{{ user.id }}</td>
@@ -32,10 +36,7 @@
         </tbody>
       </table>
   
-      <!-- Create User button -->
-      <div class="mt-4 text-left">
-        <button @click="openCreateUserModal" class="px-4 py-2 bg-blue-500 text-white rounded-md">Create User</button>
-      </div>
+     
   
       <!-- User creation/edit modal -->
       <UserModal ref="userModal" @saveUser="fetchUsers" :userData="selectedUser" />

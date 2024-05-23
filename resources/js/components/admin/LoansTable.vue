@@ -13,7 +13,7 @@
             <th class="px-4 py-2">Status ID</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody class="text-center">
           <!-- Display users data -->
           <tr v-for="user in loans" :key="user.id">
             <td class="border px-4 py-2">{{ user.id }}</td>
