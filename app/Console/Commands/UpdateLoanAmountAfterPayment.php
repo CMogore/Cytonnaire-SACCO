@@ -34,7 +34,7 @@ class UpdateLoanAmountAfterPayment extends Command
                 ]);
 
                 // Log information (optional)
-                $this->info("Loan ID {$payment->loan_id} updated: Amount decremented by {$payment->amount}. Remaining amount: " . ($loan->amount - $payment->amount));
+                $this->info("Loan ID {$payment->loan_id} updated: Amount decremented by {$payment->amount}. Remaining amount: " . ($loan->payable_amount - $payment->amount));
             } else {
                 // Log error if the loan is not found (optional)
                 $this->error("Loan ID {$payment->loan_id} not found. Payment ID: {$payment->id}.");
