@@ -16,6 +16,8 @@ use App\Models\Status;
 use App\Models\LoanType;
 use App\Models\LoanPayment;
 use App\Models\Role;
+use App\Models\Saving;
+
 
 class UserController extends Controller
 {
@@ -49,11 +51,27 @@ class UserController extends Controller
             'amount' => 'required|numeric|min:0',
         ]);
 
+        // Create the contribution record
         $contribution = Contribution::create([
             'user_id' => Auth::id(),
             'amount' => $validatedData['amount'],
             'contribution_date' => Carbon::now(),
         ]);
+
+        // Check if the user exists in the savings table
+        $savings = Saving::where('user_id', Auth::id())->first();
+
+        if ($savings) {
+            // If user exists, update the total_savings
+            $savings->total_savings += $validatedData['amount'];
+            $savings->save();
+        } else {
+            // If user doesn't exist, insert a new record
+            Saving::create([
+                'user_id' => Auth::id(),
+                'total_savings' => $validatedData['amount'],
+            ]);
+        }
 
         return response()->json($contribution, 201);
     }
@@ -168,6 +186,20 @@ public function getMadeContributions(Request $request)
         $pendingContribution = $pendingContribution > 0 ? $pendingContribution : 0;
 
         return response()->json(['pending_contribution' => $pendingContribution]);
+    }
+
+    public function getContributionsBetweenDates(Request $request)
+    {
+        $user_id = Auth::id();
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+
+        $contributions = Contribution::where('user_id', $user_id)
+            ->whereBetween('contribution_date', [$startDate, $endDate])
+            ->orderBy('contribution_date', 'asc')
+            ->get();
+
+        return response()->json($contributions);
     }
 
 

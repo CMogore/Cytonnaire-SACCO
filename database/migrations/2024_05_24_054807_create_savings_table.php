@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('contributions', function (Blueprint $table) {
+        Schema::create('savings', function (Blueprint $table) {
             $table->id(); // Primary key with auto-increment
             $table->foreignId('user_id')->constrained('users'); // Foreign key to users table
-            $table->decimal('amount', 10, 2);
-            $table->date('contribution_date');
-            $table->timestamps();
+            $table->decimal('total_savings', 15, 2); // Savings amount with precision
+            $table->timestamps(); // created_at and updated_at columns
             $table->softDeletes(); // Soft deletion
         });
     }
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('contributions');
+        Schema::dropIfExists('savings');
     }
 };

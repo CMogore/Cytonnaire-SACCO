@@ -18,7 +18,7 @@
       </div>
       <div v-else-if="selectedMenuItem === 'statements'">
         <h2 class="text-2xl font-semibold mb-4">Statements</h2>
-        <!-- <LoanRequests /> -->
+        <Statements />
       </div>
 
       <!-- Add more sections for other menu items -->
@@ -32,13 +32,15 @@
 import UserSidePanel from '../components/UserSidePanel.vue';
 import Home from '@/components/user/HomeView.vue';
 import Contributions from '../components/user/Contributions.vue'
+import Statements from '../components/user/Statements.vue'
 
 
 export default {
   components: {
     UserSidePanel,
     Home,
-    Contributions
+    Contributions,
+    Statements
   },
   data() {
     return {

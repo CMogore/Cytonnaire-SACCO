@@ -8,7 +8,6 @@
             <th class="px-4 py-2">User Id</th>
             <th class="px-4 py-2">amount</th>
             <th class="px-4 py-2">Contribution Date</th>
-            <th class="px-4 py-2">Status ID</th>
           </tr>
         </thead>
         <tbody class="text-center">
@@ -18,7 +17,6 @@
             <td class="border px-2 py-2">{{ user.user_id }}</td>
             <td class="border px-2 py-2">{{ user.amount }}</td>
             <td class="border px-2 py-2">{{ user.contribution_date }}</td>
-            <td class="border px-2 py-2">{{ user.status_id }}</td>
             <!-- <td class="border px-4 py-2">
               <button @click="editUser(user)" class="text-blue-500 hover:text-blue-700 focus:outline-none mr-2">Edit</button>
               <button @click="deleteUser(user.id)" class="text-red-500 hover:text-red-700 focus:outline-none">Delete</button>
