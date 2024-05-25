@@ -97,6 +97,17 @@ Route::middleware(['auth:sanctum', 'member'])->group(function () {
     Route::get('/user/made-contributions', [UserController::class, 'getMadeContributions']);
     Route::get('/user/pending-contributions', [UserController::class, 'getPendingContributions']);
     Route::get('/user/getcontributionbetweendates', [UserController::class, 'getContributionsBetweenDates']);
+    Route::post('/user/loan-requests', [UserController::class, 'createLoanRequest']);
+    Route::get('/user/loan-types', [UserController::class, 'getLoanTypes']);
+    Route::get('/user/loans', [UserController::class, 'getUserLoans']);
+
+    // Make loan payment
+    Route::post('/user/loan-payments', [UserController::class, 'makeLoanPayment']);
+    Route::get('/user/loan-repayments', [UserController::class, 'getUserLoanPayments']);
+    Route::get('/user/loan-requests', [UserController::class, 'getUserLoanRequests']);
+
+    Route::get('/user/notifications', [UserController::class, 'getNotifications']);
+    Route::post('/user/notifications/mark-all-read', [UserController::class, 'markAllAsRead']);
 
 
 

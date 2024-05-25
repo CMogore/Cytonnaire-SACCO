@@ -1,7 +1,7 @@
 <template>
     <div class="grid grid-cols-1 md:grid-cols-5 gap-2 ml-16 px-12 ">
       <div @click="openModal"> 
-      <div  class="bg-orange-500 rounded-lg p-12  mb-2 h-10 w-10 flex items-center justify-center">
+      <div  class="bg-gradient-to-r from-orange-100 to-orange-500 rounded-lg p-12  mb-2 h-10 w-10 flex items-center justify-center">
         <div class="text-center">
           <h2 class="text-2xl font-bold mb-2 text-white">BS</h2>
         </div>
@@ -9,7 +9,7 @@
       <h2 class="text-l font-semibold mb-2 ml-2">Buy Shares</h2>
     </div> 
     <div @click="openMCModal"> 
-      <div  class="bg-teal-500 rounded-lg p-12  mb-2 h-10 w-10 flex items-center justify-center">
+      <div  class="bg-gradient-to-r from-teal-100 to-teal-500 rounded-lg p-12  mb-2 h-10 w-10 flex items-center justify-center">
         <div class="text-center">
           <h2 class="text-2xl font-bold mb-2 text-white">MC</h2>
         </div>
@@ -17,7 +17,7 @@
       <h2 class="text-l font-semibold mb-2 -ml-6">Make Contributions</h2>
     </div> 
     <div @click="openLRModal"> 
-      <div  class="bg-pink-500 rounded-lg p-12  mb-2 h-10 w-10 flex items-center justify-center">
+      <div  class="bg-gradient-to-r from-pink-100 to-pink-500 rounded-lg p-12  mb-2 h-10 w-10 flex items-center justify-center">
         <div class="text-center">
           <h2 class="text-2xl font-bold mb-2 text-white">LR</h2>
         </div>
@@ -25,7 +25,7 @@
       <h2 class="text-l font-semibold mb-2 -ml-2">Loan Requests</h2>
     </div> 
     <div @click="openLPModal"> 
-      <div  class="bg-fuchsia-500 rounded-lg p-12  mb-2 h-10 w-10 flex items-center justify-center">
+      <div  class="bg-gradient-to-r from-fuchsia-100 to-fuchsia-500 rounded-lg p-12  mb-2 h-10 w-10 flex items-center justify-center">
         <div class="text-center">
           <h2 class="text-2xl font-bold mb-2 text-white">LP</h2>
         </div>
@@ -33,7 +33,7 @@
       <h2 class="text-l font-semibold mb-2 -ml-2">Loan Payments</h2>
     </div> 
     <div @click="openSTModal"> 
-      <div  class="bg-green-500 rounded-lg p-12 ml-2 mb-2 h-10 w-10 flex items-center justify-center">
+      <div  class="bg-gradient-to-r from-green-100 to-green-500 rounded-lg p-12 ml-2 mb-2 h-10 w-10 flex items-center justify-center">
         <div class="text-center">
           <h2 class="text-2xl font-bold mb-2 text-white">ST</h2>
         </div>
@@ -44,6 +44,8 @@
     <BuySharesModal :isOpen="isModalOpen" :userId="userId" @close="closeModal" @shareBought="handleShareBought" />
     <MakeContributionsModal :isOpen="isMakeContributionsModalOpen" @close="isMakeContributionsModalOpen = false" @contributionMade="handleContributionMade" />
     <ShareTransferModal :isOpen="isShareTransfersModalOpen" @close="isShareTransfersModalOpen = false" @sharesTransferred="handleSharesTransferred" />
+    <LoanRequestModal :isOpen="isLoanRequestModalOpen" @close="isLoanRequestModalOpen = false" :loanTypes="loanTypes" @loanRequestSubmitted="handleLoanRequestSubmitted" />
+    <LoanPaymentsModal :isOpen="isLoanPaymentsModalOpen" @close="isLoanPaymentsModalOpen = false" />
 
     <div class="flex h-[24rem] mt-20 rounded shadow-emerald-900 shadow-2xl">
       <!-- Side panel -->
@@ -74,6 +76,8 @@ import ShareTransferModal from './ShareTransfer.vue';
 import LatestContributions from './LatestContributions.vue';
 import ActiveLoans from './ActiveLoans.vue';
 import LatestPayments from './LatestPayments.vue'
+import LoanRequestModal from './MakeLoanRequest.vue';
+import LoanPaymentsModal from './MakeLoanPayment.vue';
 
 export default {
   components: {
@@ -83,7 +87,9 @@ export default {
     ShareTransferModal,
     LatestContributions,
     ActiveLoans,
-    LatestPayments
+    LatestPayments,
+    LoanRequestModal,
+    LoanPaymentsModal
   },
   data() {
     return {
@@ -91,6 +97,10 @@ export default {
       isMakeContributionsModalOpen: false,
       isModalOpen: false,
       isShareTransfersModalOpen: false,
+      isLoanRequestModalOpen: false,
+      isLoanPaymentsModalOpen: false,
+      // Other data properties
+    
       userId: null // Replace with actual user ID retrieval logic
     };
   },
@@ -98,6 +108,17 @@ export default {
     this.userId = this.getUserIdFromLocalStorage(); // Retrieve user ID from localStorage or other source
   },
   methods: {
+    openLRModal() {
+      this.isLoanRequestModalOpen = true;
+    },
+    openLPModal() {
+      this.isLoanPaymentsModalOpen = true;
+    },
+   
+    handleLoanRequestSubmitted(data) {
+      alert('Loan request submitted:', data);
+      // Update your UI or perform other actions here
+    },
     handleMenuItemSelected(item) {
       this.selectedMenuItem = item;
     },

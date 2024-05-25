@@ -7,6 +7,8 @@
             <th class="px-4 py-2">User Id</th>
             <th class="px-4 py-2">Amount</th>
             <th class="px-4 py-2">Payable Amount</th>
+            <th class="px-4 py-2">Payment period</th>
+            <th class="px-4 py-2">Payment per month</th>
             <th class="px-4 py-2">Type Id</th>
             <th class="px-4 py-2">Actions</th>
           </tr>
@@ -17,6 +19,8 @@
             <td class="border px-4 py-2">{{ user.user_id }}</td>
             <td class="border px-4 py-2">{{ user.amount }}</td>
             <td class="border px-4 py-2">{{ user.payable_amount }}</td>
+            <td class="border px-4 py-2">{{ user.payment_period }}</td>
+            <td class="border px-4 py-2">{{ user.payment_per_month }}</td>
             <td class="border px-4 py-2">{{ user.type_id }}</td>
             <td class="border px-4 py-2">
               <button @click="acceptRequest(user.id)" class="text-blue-500 hover:text-blue-700 focus:outline-none mr-2">Accept</button>
