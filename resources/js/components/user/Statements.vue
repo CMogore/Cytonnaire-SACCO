@@ -23,7 +23,7 @@
           <thead>
             <tr>
               <th class="px-4 py-2">Amount</th>
-              <th class="px-4 py-2">Contribution Date</th>
+              <th class="px-4 py-2">Contribution Date </th>
             </tr>
           </thead>
           <tbody class="text-center">
@@ -57,6 +57,7 @@ import html2canvas from 'html2canvas';
     methods: {
       async fetchContributions() {
         const authToken = localStorage.getItem('auth_token');
+
         try {
           const response = await axios.get('/api/user/getcontributionbetweendates', {
             params: {
