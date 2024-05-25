@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 use App\Models\User;
 use App\Models\Share;
@@ -14,6 +16,7 @@ use App\Models\Status;
 use App\Models\LoanType;
 use App\Models\LoanPayment;
 use App\Models\Role;
+use Illuminate\Support\Carbon;
 
 
 
@@ -22,10 +25,23 @@ class AdminController extends Controller
 {
     public function home(Request $request)
     {
+        $startDate = Carbon::now()->startOfMonth();
+    $endDate = Carbon::now()->endOfMonth();
         $totalShares = Share::sum('total_shares');
-        $totalLoanRequests = LoanRequest::where('status_id', 1)->count();
-        $pendingContributions = Contribution::where('status_id', 9)->count();
-        $totalLoans = Loan::where('status_id', 5)->count();
+        $totalLoanRequests = LoanRequest::where('status_id', 1)
+                            ->where('user_id', '!=', auth()->id())
+                            ->count();
+
+        $pendingContributions = Contribution::where('user_id', '!=', auth()->id())
+                                ->whereBetween('contribution_date', [$startDate, $endDate])
+                                ->select('user_id')
+                                ->selectRaw('SUM(amount) as total_amount')
+                                ->groupBy('user_id')
+                                ->havingRaw('SUM(amount) < ?', [500])
+                                ->count();
+        $totalLoans = Loan::where('status_id', 5)
+                        ->where('user_id', '!=', auth()->id())
+                        ->count();
         $totalUsers = User::count();
 
         return response()->json([
@@ -107,7 +123,7 @@ class AdminController extends Controller
     //contributions
     public function getContributions()
     {
-        $contributions = Contribution::where('status_id', 9)
+        $contributions = Contribution::where('user_id', '!=', auth()->id())
         ->get();;
         return response()->json($contributions);
     }
@@ -129,13 +145,41 @@ class AdminController extends Controller
     // 
 
     public function acceptLoanRequest($id)
-    {
-        $loanRequest = LoanRequest::findOrFail($id);
-        $loanRequest->status_id = 3; // Set status to accepted
-        $loanRequest->save();
-    
-        return response()->json(['message' => 'Loan request accepted successfully']);
+{
+    $loanRequest = LoanRequest::findOrFail($id);
+    $loanRequest->status_id = 3; // Set status to accepted
+    $loanRequest->save();
+
+    $acceptedStatusId = DB::table('statuses')->where('name', 'approved')->value('id');
+    $loanRequests = DB::table('loan_requests')
+                      ->where('status_id', $acceptedStatusId)
+                      ->whereNull('deleted_at')
+                      ->get();
+
+    foreach ($loanRequests as $request) {
+        DB::table('loans')->insert([
+            'user_id' => $request->user_id,
+            'amount' => $request->amount,
+            'payable_amount' => $request->payable_amount,
+            'payment_period' => $request->payment_period,
+            'payment_per_month' => $request->payment_per_month,
+            'type_id' => $request->type_id,
+            'status_id' => 5,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('loan_requests')->where('id', $request->id)->update([
+            'deleted_at' => now(),
+            'updated_at' => now(),
+        ]);
     }
+
+    $this->info('Accepted loan requests have been moved to loans table.');
+
+    return response()->json(['message' => 'Loan request accepted successfully']);
+}
+
     
     public function rejectLoanRequest(Request $request, $id)
     {
