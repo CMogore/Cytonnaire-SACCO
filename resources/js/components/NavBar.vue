@@ -9,15 +9,12 @@
       >
       <!-- Navigation Links Container -->
       <div class="flex items-center justify-between w-full">
-        <!-- Left Navigation Links -->
-        <!-- <ul class="flex space-x-12">
-          <li><router-link to="/" class="hover:text-gray-500">Home</router-link></li>
-          <li><router-link to="/about" class="hover:text-gray-500">About</router-link></li>
-        </ul> -->
+        
 
         <!-- Right Authentication Links -->
         <ul class="flex items-center space-x-4 ml-auto ">
           <li v-if="isAuthenticated" class="flex items-center space-x-4">
+            <notification></notification>
             <span>{{ name }}</span>
             <button @click="logout" class="hover:text-gray-500">Logout</button>
           </li>
@@ -38,7 +35,10 @@
   </header>
 </template>
   <script>
+  import Notification from './user/Notification.vue'
   export default {
+  components: { Notification },
+   
     data() {
       return {
         isMenuOpen: false,
