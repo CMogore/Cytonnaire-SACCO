@@ -24,6 +24,32 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
+
+        DB::table('users')->insert([
+            [
+                'firstname' => 'Chelsea',
+                'lastname' => 'Mogore',
+                'email' => 'mogorechelsea@gmail.com',
+                'password' => Hash::make('12345'),
+                'number' => '0796291574',
+                'role_id' => 2,
+                'employee_status_id' => 6,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'firstname' => 'Terry',
+                'lastname' => 'Kinuthia',
+                'email' => 'twkinuthia@cytonn.com',
+                'password' => Hash::make('12345'),
+                'number' => '0768371577',
+                'role_id' => 1,
+                'employee_status_id' => 6,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            // Add more users as needed
+        ]);
     }
 
     /**
