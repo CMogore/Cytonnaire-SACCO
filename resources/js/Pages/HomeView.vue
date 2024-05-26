@@ -1,11 +1,10 @@
-<!-- resources/js/Pages/HomeRoute.vue -->
 <template>
-    <div class="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-md space-y-4">
-        <h1 class="text-2xl font-bold">HOME</h1>
-        <router-link to="/test" class="text-blue-500">Take me to Test page</router-link>
-        
-        
-        
+    <div>
+    <img class="w-screen h-screen" src="../../../public/assets/image1.png">
+    <div class="-mt-[26rem] p-6 ">
+    <h1 class="text-white text-5xl pb-2 font-sans">Empowering Your Financial Future with CySacco</h1>
+    <h3 class="text-white text-xl">Where Dreams Meet Opportunities</h3>
+    </div>
     </div>
 </template>
 

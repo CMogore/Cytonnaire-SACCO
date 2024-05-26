@@ -3,7 +3,7 @@
       <div class="p-6 bg-white shadow-md rounded-md max-w-lg w-full">
         <div class="flex justify-between bg-white text-center mb-6 mx-2 mr-4">
           <a
-            :class="{ 'bg-emerald-900': activeForm === 'login' }"
+            :class="{ 'bg-emerald-900 text-white': activeForm === 'login' }"
             @click.prevent="activeForm = 'login'"
             href="#"
             class="text-sm font-semibold py-2 md:px-24 px-14 focus:outline-none transition-colors duration-300 ease-in-out hover:bg-gray-100 hover:text-white"
@@ -11,7 +11,7 @@
             Login
           </a>
           <a
-            :class="{ 'bg-emerald-900': activeForm === 'signup' }"
+            :class="{ 'bg-emerald-900 text-white': activeForm === 'signup' }"
             @click.prevent="activeForm = 'signup'"
             href="#"
             class="text-sm font-semibold py-2 md:pr-[4.9rem] px-14 md:pl-20 focus:outline-none transition-colors duration-300 ease-in-out hover:bg-gray-100 hover:text-white"

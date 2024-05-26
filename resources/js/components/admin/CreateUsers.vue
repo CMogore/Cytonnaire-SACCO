@@ -1,33 +1,33 @@
 <template>
-    <div v-if="isOpen" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-      <div class="bg-white p-8 rounded-lg max-w-md">
-        <h2 class="text-2xl font-semibold mb-4">{{ userData ? 'Edit User' : 'Create New User' }}</h2>
+    <div v-if="isOpen" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 mt-16 ">
+      <div class="bg-white px-8 py-2 rounded-lg max-w-md">
+        <h2 class="text-2xl font-semibold mb-2">{{ userData ? 'Edit User' : 'Create New User' }}</h2>
         <form @submit.prevent="userData ? updateUser() : addUser()">
-          <div class="mb-4">
+          <div class="mb-2">
             <label for="firstname" class="block text-sm font-medium text-gray-700">First Name:</label>
             <input v-model="formData.firstname" type="text" id="firstname" name="firstname" class="mt-1 p-2 border rounded-md w-full" required>
           </div>
-          <div class="mb-4">
+          <div class="mb-2">
             <label for="lastname" class="block text-sm font-medium text-gray-700">Last Name:</label>
             <input v-model="formData.lastname" type="text" id="lastname" name="lastname" class="mt-1 p-2 border rounded-md w-full" required>
           </div>
-          <div class="mb-4">
+          <div class="mb-2">
             <label for="email" class="block text-sm font-medium text-gray-700">Email:</label>
             <input v-model="formData.email" type="email" id="email" name="email" class="mt-1 p-2 border rounded-md w-full" required>
           </div>
-          <div class="mb-4">
+          <div class="mb-2">
             <label for="number" class="block text-sm font-medium text-gray-700">Number:</label>
             <input v-model="formData.number" type="text" id="number" name="number" class="mt-1 p-2 border rounded-md w-full" required>
           </div>
-          <div class="mb-4" v-if="!userData">
+          <div class="mb-2" v-if="!userData">
             <label for="password" class="block text-sm font-medium text-gray-700">Password:</label>
             <input v-model="formData.password" type="password" id="password" name="password" class="mt-1 p-2 border rounded-md w-full" required>
           </div>
-          <div class="mb-4">
+          <div class="mb-2">
             <label for="role_id" class="block text-sm font-medium text-gray-700">Role ID:</label>
             <input v-model="formData.role_id" type="number" id="role_id" name="role_id" class="mt-1 p-2 border rounded-md w-full" required>
           </div>
-          <div class="mb-4">
+          <div class="mb-2">
             <label for="employee_status_id" class="block text-sm font-medium text-gray-700">Employee Status ID:</label>
             <input v-model="formData.employee_status_id" type="number" id="employee_status_id" name="employee_status_id" class="mt-1 p-2 border rounded-md w-full" required>
           </div>

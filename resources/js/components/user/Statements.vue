@@ -76,7 +76,7 @@ import html2canvas from 'html2canvas';
       },
       async downloadPDF() {
         // Convert HTML table to canvas
-        const pdf = new jsPDF();
+      const pdf = new jsPDF();
       const table = document.getElementById('contributions-table');
       const canvas = await html2canvas(table);
 
