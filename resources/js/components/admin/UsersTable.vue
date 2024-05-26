@@ -115,48 +115,6 @@ export default {
 </script>
 
 <style scoped>
-.table-auto {
-  width: 100%;
-  border-collapse: collapse;
-}
 
-.table-auto th, .table-auto td {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
 
-.table-auto th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #f2f2f2;
-}
-
-@media (max-width: 640px) {
-  .table-auto thead {
-    display: none;
-  }
-  
-  .table-auto tr {
-    display: block;
-    margin-bottom: 10px;
-  }
-  
-  .table-auto td {
-    display: block;
-    text-align: right;
-    padding-left: 50%;
-    position: relative;
-  }
-  
-  .table-auto td::before {
-    content: attr(data-label);
-    position: absolute;
-    left: 0;
-    width: 50%;
-    padding-left: 15px;
-    font-weight: bold;
-    text-align: left;
-  }
-}
 </style>
