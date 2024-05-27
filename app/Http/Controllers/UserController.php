@@ -389,6 +389,23 @@ public function getNotifications()
         return response()->json(['status' => 'success']);
     }
 
+    public function getUserStats(Request $request)
+    {
+        $user = $request->user(); // Get the authenticated user
+        
+        // Calculate total shares
+        $totalShares = Share::where('user_id', $user->id)->sum('total_shares');
+
+        // Calculate total savings
+        $totalSavings = Saving::where('user_id', $user->id)->sum('total_savings');
+
+        // Return the total shares and total savings as JSON response
+        return response()->json([
+            'totalShares' => $totalShares,
+            'totalSavings' => $totalSavings,
+        ]);
+    }
+
 
 
 }

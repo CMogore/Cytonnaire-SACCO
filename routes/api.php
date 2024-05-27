@@ -109,6 +109,8 @@ Route::middleware(['auth:sanctum', 'member'])->group(function () {
     Route::get('/user/notifications', [UserController::class, 'getNotifications']);
     Route::post('/user/notifications/mark-all-read', [UserController::class, 'markAllAsRead']);
 
+    Route::get('/user/stats', [UserController::class,'getUserStats']);
+
 
 
 });
