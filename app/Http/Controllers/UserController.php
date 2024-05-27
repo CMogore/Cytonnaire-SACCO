@@ -360,11 +360,11 @@ public function getNotifications()
                 $statusMessage = 'approved';
             } elseif ($loan->status_id == 4) {
                 $statusMessage = 'rejected';
-                $rejectionComment = $loan->rejection_comment;
+                $rejectionComment = $loan->comment;
             }
 
             $notifications[] = [
-                'message' => 'Your loan of ' . $loan->amount . ' has been ' . $statusMessage . '. ' . ($loan->status_id == 3 ? 'Comment: ' . $rejectionComment : ''),
+                'message' => 'Your loan of ' . $loan->amount . ' has been ' . $statusMessage . '. ' . ($loan->status_id == 4 ? 'Comment: ' . $rejectionComment : ''),
                 'date' => $loan->updated_at->format('Y-m-d H:i:s')
             ];
         }
